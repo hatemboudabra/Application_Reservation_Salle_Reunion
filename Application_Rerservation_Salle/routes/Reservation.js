@@ -4,7 +4,9 @@ const bodyParser = require('body-parser');
 const authenticate = require('../midlware/authenticate')
 const User = require('../models/User');
 const Reservation = require('../models/Reservation');
+const MeetingRoom = require('../models/meetingRoom');
 const nodemailer = require('nodemailer');
+const meetingRoom = require('../models/meetingRoom');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
@@ -74,11 +76,25 @@ router.post('/ajouter', authenticate, (req, res) => {
 
 async function sendEmailNotification(reservation) {
     const user = await User.findById(reservation.user);
+    const meetingRoom = await MeetingRoom.findById(reservation.meetingRoom);
     const userEmail = user.email;
     const info = await transporter.sendMail({
       from: '<hatemboudabra41@gmail.com>', // sender address
       to: "dhiasmairi123@gmail.com, mouhadje@gmail.com ",
-      subject: "", // Subject line
+      subject: "Confirmation de réservation", // Subject line
+      html: `
+          <p>Bonjour,</p>
+          <p>Veuillez confirmation de réservation :</p>
+          <p><strong>User :</strong> ${user.username}</p>
+          <p><strong>Date de réservation :</strong> ${reservation.startTime}</p>
+          <p><strong>Meeting Room :</strong> ${meetingRoom.name}</p>
+          <p><strong>End Date :</strong> ${reservation.endTime}</p>
+          <p>Confirmez-vous cette réservation ?</p>
+          <p>
+              <a href="http://example.com/confirm/yes/${reservation._id}">Oui</a>
+              <a href="http://example.com/confirm/no/${reservation._id}">Non</a>
+          </p>
+      `,
  
     });
   
