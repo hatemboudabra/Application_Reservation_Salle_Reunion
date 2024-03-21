@@ -1,11 +1,26 @@
 const express = require('express');
+const multer = require('multer');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const authenticate = require('../midlware/authenticate')
 const MeetingRoom = require('../models/meetingRoom');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
+filename = '';
 
+const storage1 = multer.diskStorage(
+    {
+    destination : './upload/admin',
+    filename: function(req, file, cb){
+        date = Date.now();
+        filename = date + '.' + file.mimetype.split('/')[1]
+        cb(null, filename);
+       
+
+    },
+    }
+);
+const upload =  multer ({storage: storage1});
 router.get('/all', authenticate,(req, res) => {
   MeetingRoom.find().then(
     (data) => {
@@ -43,13 +58,15 @@ router.delete('/:id',authenticate, (req, res) => {
   );
 });
 
-router.post('/ajouter',authenticate, (req, res) => {
-    console.log(req.body);
-  let meetfromb = req.body;
- 
-  let meeting = new MeetingRoom(meetfromb);
 
-  meeting.save().then(
+
+
+router.post('/ajouter', authenticate,(req, res) => {
+  console.log(req.body);
+  let meetfromb = req.body;
+  let meetingRoom = new MeetingRoom(meetfromb);
+  meetingRoom.image=filename;
+  meetingRoom.save().then(
     (data) => {
       console.log(data);
       res.send(data);

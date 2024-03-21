@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const authRoutes  = require('./routes/auth');
 const meetingRoutes  = require('./routes/meetingRoom');
 const reservationRoutes  = require('./routes/Reservation');
@@ -10,6 +11,7 @@ const MONGODB_URI = process.env.MONGODB_URI
 const PORT = process.env.PORT || 5000
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use('/auth',authRoutes)
 app.use('/meetingRoom',meetingRoutes)
 app.use('/Reservation',reservationRoutes)

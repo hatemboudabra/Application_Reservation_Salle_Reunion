@@ -103,9 +103,7 @@ async function sendEmailNotification(reservation) {
   router.get('/confirm/:id/:response', async (req, res) => {
     try {
       const id = req.params.id;
-      const response = req.params.response.toLowerCase(); // "yes" ou "no"
-  
-      // Recherche de la réservation par son identifiant
+      const response = req.params.response.toLowerCase(); 
       const reservation = await Reservation.findById(id).populate('meetingRoom');
   
       if (!reservation) {
@@ -113,21 +111,18 @@ async function sendEmailNotification(reservation) {
       }
   
       if (response === "yes") {
-        // Mettre à jour le statut de la réservation pour la confirmer
+       
         reservation.confirmed = true;
         await reservation.save();
   
-        // Soustraire 1 de la capacité de la salle de réunion associée
         const meetingRoom = reservation.meetingRoom;
         meetingRoom.capacity -= 1;
         await meetingRoom.save();
   
-        // Envoyer un e-mail de confirmation
         await sendConfirmationEmail(reservation);
   
         res.send("Réservation confirmée avec succès.");
       } else if (response === "no") {
-        // Supprimer la réservation si l'utilisateur ne souhaite pas la confirmer
         await Reservation.findByIdAndDelete(id);
         res.send("Réservation annulée avec succès.");
       } else {
