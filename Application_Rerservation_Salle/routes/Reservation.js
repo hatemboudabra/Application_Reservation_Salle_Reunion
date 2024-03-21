@@ -100,4 +100,66 @@ async function sendEmailNotification(reservation) {
   
     console.log("Message sent: %s", info.messageId);
   }
+  router.get('/confirm/:id/:response', async (req, res) => {
+    try {
+      const id = req.params.id;
+      const response = req.params.response.toLowerCase(); // "yes" ou "no"
+  
+      // Recherche de la réservation par son identifiant
+      const reservation = await Reservation.findById(id).populate('meetingRoom');
+  
+      if (!reservation) {
+        return res.status(404).send({ message: "Réservation introuvable." });
+      }
+  
+      if (response === "yes") {
+        // Mettre à jour le statut de la réservation pour la confirmer
+        reservation.confirmed = true;
+        await reservation.save();
+  
+        // Soustraire 1 de la capacité de la salle de réunion associée
+        const meetingRoom = reservation.meetingRoom;
+        meetingRoom.capacity -= 1;
+        await meetingRoom.save();
+  
+        // Envoyer un e-mail de confirmation
+        await sendConfirmationEmail(reservation);
+  
+        res.send("Réservation confirmée avec succès.");
+      } else if (response === "no") {
+        // Supprimer la réservation si l'utilisateur ne souhaite pas la confirmer
+        await Reservation.findByIdAndDelete(id);
+        res.send("Réservation annulée avec succès.");
+      } else {
+        res.status(400).send({ message: "Réponse non valide. Veuillez spécifier 'yes' ou 'no'." });
+      }
+    } catch (error) {
+      console.error("Erreur lors de la confirmation de la réservation :", error);
+      res.status(500).send({ message: "Une erreur est survenue lors de la confirmation de la réservation." });
+    }
+  });
+  
+  async function sendConfirmationEmail(reservation) {
+    try {
+      const user = await User.findById(reservation.user);
+      const meetingRoom = await MeetingRoom.findById(reservation.meetingRoom);
+  
+      const info = await transporter.sendMail({
+        from: '<hatemboudabra41@gmail.com>', // Adresse e-mail de l'expéditeur
+        to: "dhiasmairi123@gmail.com", // Adresse e-mail du destinataire
+        subject: "Confirmation de réservation", // Sujet de l'e-mail
+        html: `
+          <p>Bonjour ${user.username},</p>
+          <p>Votre réservation pour la salle de réunion "${meetingRoom.name}" a été confirmée avec succès.</p>
+          <p>Date de début : ${reservation.startTime}</p>
+          <p>Date de fin : ${reservation.endTime}</p>
+        `,
+      });
+  
+      console.log("E-mail de confirmation envoyé :", info.messageId);
+    } catch (error) {
+      console.error("Erreur lors de l'envoi de l'e-mail de confirmation :", error);
+    }
+  }
+  
 module.exports = router;
