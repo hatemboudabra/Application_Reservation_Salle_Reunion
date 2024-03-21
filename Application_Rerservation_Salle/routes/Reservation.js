@@ -75,12 +75,13 @@ router.post('/ajouter', authenticate, (req, res) => {
 });
 
 async function sendEmailNotification(reservation) {
-    const user = await User.findById(reservation.user);
+   // const user = await User.findById(reservation.user);
     const meetingRoom = await MeetingRoom.findById(reservation.meetingRoom);
+    const user = await User.findById(meetingRoom.user);
     const userEmail = user.email;
     const info = await transporter.sendMail({
       from: '<hatemboudabra41@gmail.com>', // sender address
-      to: "dhiasmairi123@gmail.com, mouhadje@gmail.com ",
+      to: userEmail,
       subject: "Confirmation de réservation", // Subject line
       html: `
           <p>Bonjour,</p>
@@ -101,11 +102,14 @@ async function sendEmailNotification(reservation) {
     console.log("Message sent: %s", info.messageId);
   }
   router.get('/confirm/:id/:response', async (req, res) => {
+   
     try {
       const id = req.params.id;
       const response = req.params.response.toLowerCase(); 
       const reservation = await Reservation.findById(id).populate('meetingRoom');
-  
+      const user = await User.findById(reservation.user);
+      const userEmail1 = user.email;
+        console.log(userEmail1);
       if (!reservation) {
         return res.status(404).send({ message: "Réservation introuvable." });
       }
@@ -114,12 +118,12 @@ async function sendEmailNotification(reservation) {
        
         reservation.confirmed = true;
         await reservation.save();
-  
+        
         const meetingRoom = reservation.meetingRoom;
         meetingRoom.capacity -= 1;
         await meetingRoom.save();
   
-        await sendConfirmationEmail(reservation);
+        await sendConfirmationEmail(reservation, userEmail1);
   
         res.send("Réservation confirmée avec succès.");
       } else if (response === "no") {
@@ -134,14 +138,14 @@ async function sendEmailNotification(reservation) {
     }
   });
   
-  async function sendConfirmationEmail(reservation) {
+  async function sendConfirmationEmail(reservation , userEmail1) {
     try {
       const user = await User.findById(reservation.user);
       const meetingRoom = await MeetingRoom.findById(reservation.meetingRoom);
   
       const info = await transporter.sendMail({
         from: '<hatemboudabra41@gmail.com>', // Adresse e-mail de l'expéditeur
-        to: "dhiasmairi123@gmail.com", // Adresse e-mail du destinataire
+        to: userEmail1,
         subject: "Confirmation de réservation", // Sujet de l'e-mail
         html: `
           <p>Bonjour ${user.username},</p>
