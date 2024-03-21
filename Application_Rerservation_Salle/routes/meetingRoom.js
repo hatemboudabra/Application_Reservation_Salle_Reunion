@@ -61,7 +61,7 @@ router.delete('/:id',authenticate, (req, res) => {
 
 
 
-router.post('/ajouter', authenticate,(req, res) => {
+router.post('/ajouter'  , upload.any('image'), authenticate,(req, res) => {
   console.log(req.body);
   let meetfromb = req.body;
   let meetingRoom = new MeetingRoom(meetfromb);
