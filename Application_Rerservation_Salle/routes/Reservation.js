@@ -80,9 +80,9 @@ async function sendEmailNotification(reservation) {
     const user = await User.findById(meetingRoom.user);
     const userEmail = user.email;
     const info = await transporter.sendMail({
-      from: '<hatemboudabra41@gmail.com>', // sender address
+      from: '<hatemboudabra41@gmail.com>', 
       to: userEmail,
-      subject: "Confirmation de réservation", // Subject line
+      subject: "Confirmation de réservation",
       html: `
           <p>Bonjour,</p>
           <p>Veuillez confirmation de réservation :</p>
