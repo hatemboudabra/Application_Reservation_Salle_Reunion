@@ -92,8 +92,8 @@ async function sendEmailNotification(reservation) {
           <p><strong>End Date :</strong> ${reservation.endTime}</p>
           <p>Confirmez-vous cette réservation ?</p>
           <p>
-              <a href="http://example.com/confirm/yes/${reservation._id}">Oui</a>
-              <a href="http://example.com/confirm/no/${reservation._id}">Non</a>
+              <a href="http://localhost:5000/Reservation/confirm/${reservation._id}/yes">Oui</a>
+              <a href="http://localhost:5000/Reservation/confirm/${reservation._id}/no">Non</a>
           </p>
       `,
  
