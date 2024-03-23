@@ -15,21 +15,30 @@ user ={
   username:'',
   password:''
 }
-token : any;
-//tokenetudiant : any;
+isLoggedIn = false;
+isLoginFailed = false;
+errorMessage = '';
+roles: string[] = [];
 ngOnInit(): void {
       
 }
   login(){
-   const {username , password} = this.user;
+   const user = this.user;
    this.authService.login(this.user).subscribe({
-    
-   })
-   
+    next : data =>{
+      console.log(data)
+      this.storageService.saveUser(data);
+      this.isLoginFailed = false;
+      this.isLoggedIn = true;
+    //  this.roles = this.storageService.getUser().roles; 
+     },
+    error: err => {
+      this.errorMessage = err.error.message;
+      this.isLoginFailed = true;
+    }
+  });
+}
+}
+
       
  
-
- 
-
-}
-}
