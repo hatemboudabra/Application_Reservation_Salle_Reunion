@@ -14,4 +14,7 @@ export class AuthService {
   login(user:any){
     return this.http.post(this.url+'login',user);
   }
+  getrole(id : any){
+    return this.http.get(this.url+id)
+  }
 }

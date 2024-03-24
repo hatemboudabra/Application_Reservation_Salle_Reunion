@@ -13,7 +13,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
-  secure: true, // Use `true` for port 465, `false` for all other ports
+  secure: true, 
   auth: {
     user: "hatemboudabra41@gmail.com",
     pass: "tzct gurs efan lbru",
@@ -144,9 +144,9 @@ async function sendEmailNotification(reservation) {
       const meetingRoom = await MeetingRoom.findById(reservation.meetingRoom);
   
       const info = await transporter.sendMail({
-        from: '<hatemboudabra41@gmail.com>', // Adresse e-mail de l'expéditeur
+        from: '<hatemboudabra41@gmail.com>', 
         to: userEmail1,
-        subject: "Confirmation de réservation", // Sujet de l'e-mail
+        subject: "Confirmation de réservation", 
         html: `
           <p>Bonjour ${user.username},</p>
           <p>Votre réservation pour la salle de réunion "${meetingRoom.name}" a été confirmée avec succès.</p>

@@ -18,7 +18,8 @@ user ={
 isLoggedIn = false;
 isLoginFailed = false;
 errorMessage = '';
-roles: string[] = [];
+token :any
+ role : any;
 ngOnInit(): void {
       
 }
@@ -27,9 +28,32 @@ ngOnInit(): void {
    this.authService.login(this.user).subscribe({
     next : data =>{
       console.log(data)
-      this.storageService.saveUser(data);
+      //this.storageService.saveUser(data);
+      this.token= data;
+        localStorage.setItem('token',this.token.token);
       this.isLoginFailed = false;
       this.isLoggedIn = true;
+       const user2 =this.storageService.getUserData();
+       const id = user2._id;
+       console.log(id)
+      this.authService.getrole(id).subscribe(
+        (response : any)=>{
+           this.role = response.role;
+          console.log(this.role);
+          if(this.role == 'User'){
+              this.router.navigate(['/dashboardus'])
+          }
+          else{
+            this.router.navigate(['/dashboard'])
+          }
+        },
+        (error)=>{
+          console.log(error);
+        }
+        
+        )
+     //const user1 =  this.storageService.getUser().roles;
+    // console.log("hhh123"+user1);
     //  this.roles = this.storageService.getUser().roles; 
      },
     error: err => {
@@ -38,6 +62,7 @@ ngOnInit(): void {
     }
   });
 }
+
 }
 
       

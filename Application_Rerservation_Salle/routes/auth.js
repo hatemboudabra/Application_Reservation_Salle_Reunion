@@ -36,5 +36,16 @@ router.post('/login',async (req,res)=>{
     res.status(400).send(err.message)
    }
 });
-
+router.get('/:userId', async (req, res) => {
+    try {
+      const userId = req.params.userId;
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(404).send('User not found');
+      }
+      res.json({role: user.Roles });
+    } catch (error) {
+      res.status(400).send(error.message);
+    }
+  });
 module.exports = router;
