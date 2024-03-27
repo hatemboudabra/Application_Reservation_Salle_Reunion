@@ -1,6 +1,6 @@
 <div class="col-lg-12 col-md-12 col-12">
     <!-- Start Single Item -->
-    <div class="single-item-grid" *ngFor="let room of meetingroom">
+    <div class="single-item-grid" *ngFor="let room of meetingroom ">
       <div class="row align-items-center">
         <div class="col-lg-5 col-md-7 col-12">
           <div class="image">
@@ -19,6 +19,9 @@
             <ul class="info">
               <li class="price">Capacity: {{ room.capacity }}</li>
               <li class="like"><a href="javascript:void(0)"><i class="lni lni-heart"></i></a></li>
+            
+              <button class="btn btn-danger" (click)="deleteRoom(room._id)">Delete</button>
+            <!--  <button class="btn btn-primary" (click)="updateRoom(room._id)">Update</button>-->
             </ul>
           </div>
         </div>
