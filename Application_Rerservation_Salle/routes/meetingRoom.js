@@ -21,7 +21,7 @@ const storage1 = multer.diskStorage(
     }
 );
 const upload =  multer ({storage: storage1});
-router.get('/all', authenticate,(req, res) => {
+router.get('/all', (req, res) => {
   MeetingRoom.find().then(
     (data) => {
       res.send(data);

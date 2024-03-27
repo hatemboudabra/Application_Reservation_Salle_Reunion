@@ -14,6 +14,9 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
 import { NavbaruserComponent } from './dashboard-user/navbaruser/navbaruser.component';
 import { FormsModule } from '@angular/forms';
+import { ListMeetingComponent } from './dashboard/list-meeting/list-meeting.component';
+import { AddRommComponent } from './dashboard/add-romm/add-romm.component';
+import { UpdateRommComponent } from './dashboard/update-romm/update-romm.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +27,10 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     RegisterComponent,
     DashboardUserComponent,
-    NavbaruserComponent
+    NavbaruserComponent,
+    ListMeetingComponent,
+    AddRommComponent,
+    UpdateRommComponent
   ],
   imports: [
     BrowserModule,
