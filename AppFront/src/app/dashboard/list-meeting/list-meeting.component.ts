@@ -3,6 +3,7 @@ import { Route } from '@angular/router';
 import { RoomService } from 'src/app/services/room.service';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-list-meeting',
@@ -11,11 +12,15 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class ListMeetingComponent  implements OnInit{
  public url='http://localhost:5000/'
-  constructor( private  _list:RoomService , private router: Router){}
+  constructor( private  _list:RoomService ,private storageService:TokenStorageService, private router: Router){}
     meetingroom : any ;
     
   ngOnInit(): void {
-      this._list.getallRoom().subscribe({
+    const user2 =this.storageService.getUserData();
+    console.log(user2)
+    const id = user2._id;
+    this._list.roombyiduser(id).subscribe({
+
         next : data =>{
           this.meetingroom = data;
           console.log(data);

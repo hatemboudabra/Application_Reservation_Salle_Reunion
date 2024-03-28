@@ -18,6 +18,7 @@ export class RoomService {
   getall(){
     return this.http.get(this.url+'all');
   }
+
   modifier(id : any , meetingRoom : any){
     return this.http.put(this.url+id,meetingRoom);
   }
@@ -35,6 +36,11 @@ export class RoomService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     return this.http.get<any[]>(`${this.url}/all`, { headers });
   }
+  roombyiduser(id:any){
+    
+    return this.http.get(this.url+'getroombyiduser/'+id,{ headers: this.headers })
+  }
+
 
 
 }

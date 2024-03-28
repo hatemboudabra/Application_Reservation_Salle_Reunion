@@ -57,10 +57,6 @@ router.delete('/:id',authenticate, (req, res) => {
     }
   );
 });
-
-
-
-
 router.post('/ajouter'  , upload.any('image'), authenticate,(req, res) => {
   console.log(req.body);
   let meetfromb = req.body;
@@ -77,5 +73,20 @@ router.post('/ajouter'  , upload.any('image'), authenticate,(req, res) => {
     }
   );
 });
+router.get('/getroombyiduser/:userId', authenticate, (req, res) => {
+  const userId = req.params.userId;
+  MeetingRoom.find({ user: userId })
+    .then(rooms => {
+      if (!rooms || rooms.length === 0) {
+        return res.status(404).json({ message: 'Meeting rooms not found for this user' });
+      }
+      res.json(rooms);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    });
+});
+
 
 module.exports = router;
