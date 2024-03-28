@@ -10,7 +10,7 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./list-meeting.component.css']
 })
 export class ListMeetingComponent  implements OnInit{
- 
+ public url='http://localhost:5000/'
   constructor( private  _list:RoomService , private router: Router){}
     meetingroom : any ;
     

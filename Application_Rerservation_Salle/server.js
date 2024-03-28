@@ -15,6 +15,7 @@ app.use(cors());
 app.use('/auth',authRoutes)
 app.use('/meetingRoom',meetingRoutes)
 app.use('/Reservation',reservationRoutes)
+app.use('/getimage',express.static('./upload/admin'))
 // connection to mongodb and start server 
 mongoose.connect(MONGODB_URI).then(()=>{
     console.log('connected to MongoDb');

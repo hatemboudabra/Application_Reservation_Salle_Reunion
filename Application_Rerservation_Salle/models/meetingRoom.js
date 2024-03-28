@@ -3,7 +3,8 @@ const meetingRoomSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   name: { type: String, required: true },
   capacity: { type: Number, required: true },
-  image: { type: String }
+  image: { type: String },
+  price: { type: Number}
 });
 
 module.exports = mongoose.model('MeetingRoom', meetingRoomSchema);

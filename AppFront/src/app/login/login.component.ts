@@ -40,6 +40,7 @@ ngOnInit(): void {
         (response : any)=>{
            this.role = response.role;
           console.log(this.role);
+        
           if(this.role == 'User'){
               this.router.navigate(['/dashboardus'])
           }

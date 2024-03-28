@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
 import { ListMeetingComponent } from './dashboard/list-meeting/list-meeting.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AddRommComponent } from './dashboard/add-romm/add-romm.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,8 +18,10 @@ const routes: Routes = [
   { path: 'dashboard',canActivate:[AuthGuard], component: DashboardComponent , children:[
     {path: '', redirectTo:'dashboard', pathMatch: 'full'},
     { path: 'listroom', component: ListMeetingComponent},
+    { path: 'add-room', component:AddRommComponent },
+
 ]}
- 
+
 ];
 
 @NgModule({
