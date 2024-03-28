@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,11 @@ export class AuthService {
   }
   getall(){
     return this.http.get(this.url+'all');
+  }
+  supprimer(id:any){
+    return this.http.delete(this.url+id);
+  }
+  userbyid(id:any){
+    return this.http.get(this.url+'userbyid/'+id)
   }
 }

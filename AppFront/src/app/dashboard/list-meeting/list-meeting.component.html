@@ -15,10 +15,12 @@
             <h3 class="title">
               <a href="item-details.html">{{ room.name }}</a>
             </h3>
-            <ul class="info">
-              <li class="price">Capacity: {{ room.capacity }}</li>
-              <li class="price">Capacity: {{ room.price }}</li>
-            </ul>
+            <div>
+              <ul class="price">Capacity: {{ room.capacity }}</ul>
+    
+              <ul class="price">Price {{ room.price }}</ul>
+            </div>
+          
             <br>
             <button class="btn btn-danger" (click)="deleteRoom(room._id)">Delete</button>
             <button routerLink="/dashboard/updateroom" class="btn btn-primary">Update</button>

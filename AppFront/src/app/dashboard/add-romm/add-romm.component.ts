@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { RoomService } from 'src/app/services/room.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 
@@ -9,7 +10,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
   styleUrls: ['./add-romm.component.css']
 })
 export class AddRommComponent implements OnInit {
-  constructor(private storageService : TokenStorageService , private _list : RoomService , private router : Router){}
+  constructor(private storageService : TokenStorageService,private auth:AuthService , private _list : RoomService , private router : Router){}
 
    Room = {
     user:"",
@@ -20,8 +21,11 @@ export class AddRommComponent implements OnInit {
     description: "" 
 };
 image : any;
+currentuser:any
 
 ngOnInit(): void {
+  this.getCurrentUser()
+
     
 }
 selectedimage(event:any){
@@ -53,5 +57,30 @@ ajouter(){
       }
     );
   }
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.clear(); 
+    this.auth.logout()
+    this.router.navigate(['login']); 
+  
+  }
+  getCurrentUser(): void {
+
+    const user2 =this.storageService.getUserData();
+    console.log(user2)
+    const id = user2._id;
+    this.auth.userbyid(id).subscribe({
+      next:data=>{
+        this.currentuser=data
+        console.log(data)
+      }
+      ,error:err=>{
+        console.log(err)
+
+      }
+      
+    })
+  }
+
 }
 

@@ -24,7 +24,7 @@
            
             <button [routerLink]="['/dashboard/updateuser', user._id]" class="btn btn-primary">Update</button>
             -->
-            <button class="btn btn-danger">Delete</button>
+           <button class="btn btn-danger" (click)="deleteUser(user._id)">Delete</button>
           </div>
         </div>
       </div>

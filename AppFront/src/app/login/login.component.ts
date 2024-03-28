@@ -34,6 +34,7 @@ ngOnInit(): void {
       this.isLoginFailed = false;
       this.isLoggedIn = true;
        const user2 =this.storageService.getUserData();
+       console.log(user2)
        const id = user2._id;
        console.log(id)
       this.authService.getrole(id).subscribe(

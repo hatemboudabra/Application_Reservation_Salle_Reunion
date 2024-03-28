@@ -23,4 +23,18 @@ ngOnInit(): void {
     })
   
 }
+deleteUser(id:any){
+  this.user.supprimer(id).subscribe(
+    () => {
+      console.log('User deleted successfully.');
+      this.userList = this.userList.filter((user: any) => this.user !== id);
+      this.ngOnInit();
+    },
+    error => {
+      console.log('Error deleting user:', error);
+    }
+  );
 }
+
+}
+

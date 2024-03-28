@@ -5,18 +5,16 @@
             <div class="dashboard-sidebar">
                 <div class="user-image">
                     <img src="assets/images/dashboard/user-image.jpg" alt="#">
-                    <h3>Steve Aldridge
-                        <span><a href="javascript:void(0)">@username</a></span>
-                    </h3>
+                    <h3>{{ currentuser.username}}</h3>
                 </div>
                 <div class="dashboard-menu">
                     <ul>
-                        <li><a href="dashboard.html"><i class="lni lni-dashboard"></i> Dashboard</a></li>
+                        <li><a routerLink="/dashboard/listroom"><i class="lni lni-dashboard"></i> Dashboard</a></li>
                         <li><a href="my-items.html"><i class="lni lni-bolt-alt"></i> My Ads</a></li>
                         <li><a href="messages.html"><i class="lni lni-envelope"></i> Notification</a></li>
                     </ul>
                     <div class="button">
-                        <a class="btn" href="javascript:void(0)">Logout</a>
+                        <a class="btn"(click)="logout()">Logout</a>
                     </div>
                 </div>
             </div>
@@ -25,8 +23,8 @@
         <div class="col-lg-9 col-md-8 col-12">
             <div class="main-content">
                 <!-- Start Post Ad Block Area -->
-                <div class="dashboard-block mt-0">
-                    <h3 class="block-title">Post Ad</h3>
+                <div class="dashboard-block mt-0">  
+                    <h3 class="block-title">Ad Room</h3>
                     <div class="inner-block">
                         <!-- Start Post Ad Tab -->
                         <div class="post-ad-tab">
