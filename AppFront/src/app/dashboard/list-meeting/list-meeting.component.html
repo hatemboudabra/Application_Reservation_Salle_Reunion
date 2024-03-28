@@ -15,14 +15,13 @@
             <h3 class="title">
               <a href="item-details.html">{{ room.name }}</a>
             </h3>
-            <p class="location"><a href="javascript:void(0)"><i class="lni lni-map-marker"></i>Las Vegas</a></p>
             <ul class="info">
               <li class="price">Capacity: {{ room.capacity }}</li>
-              <li class="like"><a href="javascript:void(0)"><i class="lni lni-heart"></i></a></li>
-            
-              <button class="btn btn-danger" (click)="deleteRoom(room._id)">Delete</button>
-            <!--  <button class="btn btn-primary" (click)="updateRoom(room._id)">Update</button>-->
+              <li class="price">Capacity: {{ room.price }}</li>
             </ul>
+            <br>
+            <button class="btn btn-danger" (click)="deleteRoom(room._id)">Delete</button>
+            <button routerLink="/dashboard/updateroom" class="btn btn-primary">Update</button>
           </div>
         </div>
       </div>

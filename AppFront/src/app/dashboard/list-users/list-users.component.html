@@ -1,0 +1,32 @@
+<div class="col-lg-12 col-md-12 col-12">
+    <!-- Start Single Item -->
+    <div class="single-item-grid" *ngFor="let user of userList ">
+      <div class="row align-items-center">
+        <div class="col-lg-5 col-md-7 col-12">
+          <div class="image">
+            <!-- Redimensionner l'image -->
+            <img src="assets/user.jpg" alt="User Image" class="img-thumbnail" style="max-width: 200px; height: auto;">
+          </div>
+        </div>
+        <div class="col-lg-7 col-md-5 col-12">
+          <div class="content">
+            <a href="javascript:void(0)" class="tag">User</a>
+            <h3 class="title">
+              <!-- Afficher le nom de l'utilisateur -->
+              {{ user.username }}
+            </h3>
+            <ul class="info">
+              <li class="email">Email: {{ user.email }}</li>
+            </ul>
+            <br>
+            <!-- 
+                Boutons pour supprimer et mettre à jour l'utilisateur 
+           
+            <button [routerLink]="['/dashboard/updateuser', user._id]" class="btn btn-primary">Update</button>
+            -->
+            <button class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

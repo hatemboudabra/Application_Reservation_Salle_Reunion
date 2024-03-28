@@ -9,6 +9,8 @@ import { DashboardUserComponent } from './dashboard-user/dashboard-user.componen
 import { ListMeetingComponent } from './dashboard/list-meeting/list-meeting.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AddRommComponent } from './dashboard/add-romm/add-romm.component';
+import { UpdateRommComponent } from './dashboard/update-romm/update-romm.component';
+import { ListUsersComponent } from './dashboard/list-users/list-users.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,6 +21,9 @@ const routes: Routes = [
     {path: '', redirectTo:'dashboard', pathMatch: 'full'},
     { path: 'listroom', component: ListMeetingComponent},
     { path: 'add-room', component:AddRommComponent },
+    { path: 'updateroom', component:UpdateRommComponent },
+    { path: 'listusers', component:ListUsersComponent }
+
 
 ]}
 

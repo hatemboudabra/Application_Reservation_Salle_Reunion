@@ -20,4 +20,7 @@ export class AuthService {
   logout() :void{
     localStorage.removeItem('token');
   }
+  getall(){
+    return this.http.get(this.url+'all');
+  }
 }

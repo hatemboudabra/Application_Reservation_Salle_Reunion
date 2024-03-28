@@ -36,6 +36,14 @@ router.post('/login',async (req,res)=>{
     res.status(400).send(err.message)
    }
 });
+router.get('/all', async (req, res) => {
+  try {
+    const users = await User.find({ Roles: 'User' });
+    res.json(users);
+  } catch (error) {
+    res.status(500).send('Internal Server Error');
+  }
+});
 router.get('/:userId', async (req, res) => {
     try {
       const userId = req.params.userId;
@@ -48,4 +56,5 @@ router.get('/:userId', async (req, res) => {
       res.status(400).send(error.message);
     }
   });
+
 module.exports = router;
