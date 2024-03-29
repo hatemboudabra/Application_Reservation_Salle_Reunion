@@ -23,7 +23,7 @@
           
             <br>
             <button class="btn btn-danger" (click)="deleteRoom(room._id)">Delete</button>
-            <button routerLink="/dashboard/updateroom" class="btn btn-primary">Update</button>
+            <button [routerLink]="['/dashboard/updateroom/',room._id]" class="btn btn-primary">Update</button>
           </div>
         </div>
       </div>

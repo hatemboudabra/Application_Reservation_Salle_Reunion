@@ -32,19 +32,23 @@ router.get('/all', authenticate,(req, res) => {
   );
 });
 
-router.put('/:id',authenticate, (req, res) => {
+router.put('/update/:id',upload.any('image'),(req,res)=>{
   let id = req.params.id;
-  let a = req.body;
-
-  MeetingRoom.findOneAndUpdate({ _id: id }, a, { new: true }).then(
-    (updated) => {
-      res.send(updated);
-    },
-    (err) => {
-      res.send(err);
-    }
+  let a =req.body;
+  if(filename.length>0){
+      a.image= filename;
+  }
+  MeetingRoom.findOneAndUpdate(
+      {_id:id},
+      a,{new:true}
+  ).then(
+      (updated)=>{
+      res.send(updated);},
+      (err)=>{
+          res.send(err)
+      }
   );
-});
+  });
 
 router.delete('/:id',authenticate, (req, res) => {
   let id = req.params.id;
@@ -57,6 +61,7 @@ router.delete('/:id',authenticate, (req, res) => {
     }
   );
 });
+
 router.post('/ajouter'  , upload.any('image'), authenticate,(req, res) => {
   console.log(req.body);
   let meetfromb = req.body;
@@ -87,6 +92,18 @@ router.get('/getroombyiduser/:userId', authenticate, (req, res) => {
       res.status(500).json({ message: 'Internal Server Error' });
     });
 });
+router.get('/getbyid/:id',(req,res)=>{
+  let id = req.params.id;
+  MeetingRoom.findById({_id:id}).then(
+      (data)=>{
+          res.send(data);
+  
+      },
+      (err)=>{
+      res.send(err)
+  });
+});
+
 
 
 module.exports = router;

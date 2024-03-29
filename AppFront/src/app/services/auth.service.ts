@@ -30,4 +30,5 @@ export class AuthService {
   userbyid(id:any){
     return this.http.get(this.url+'userbyid/'+id)
   }
+
 }

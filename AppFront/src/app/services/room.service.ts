@@ -20,7 +20,7 @@ export class RoomService {
   }
 
   modifier(id : any , meetingRoom : any){
-    return this.http.put(this.url+id,meetingRoom);
+    return this.http.put(this.url+'update/'+id,meetingRoom);
   }
   supprimer(id:any){
     return this.http.delete(this.url+id,{ headers: this.headers });
@@ -40,6 +40,11 @@ export class RoomService {
     
     return this.http.get(this.url+'getroombyiduser/'+id,{ headers: this.headers })
   }
+
+  roombyid(id:any){
+    return this.http.get(this.url+'getbyid/'+id,{ headers: this.headers })
+  }
+  
 
 
 

@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
-
+import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
@@ -21,7 +20,7 @@ const routes: Routes = [
     {path: '', redirectTo:'dashboard', pathMatch: 'full'},
     { path: 'listroom', component: ListMeetingComponent},
     { path: 'add-room', component:AddRommComponent },
-    { path: 'updateroom', component:UpdateRommComponent },
+    { path: 'updateroom/:id', component:UpdateRommComponent },
     { path: 'listusers', component:ListUsersComponent }
 
 
