@@ -19,8 +19,9 @@
               <ul class="price">Capacity: {{ room.capacity }}</ul>
     
               <ul class="price">Price {{ room.price }}</ul>
+              <ul class="price">Description: {{ room.description }} </ul>
             </div>
-          
+             
             <br>
             <button class="btn btn-danger" (click)="deleteRoom(room._id)">Delete</button>
             <button [routerLink]="['/dashboard/updateroom/',room._id]" class="btn btn-primary">Update</button>

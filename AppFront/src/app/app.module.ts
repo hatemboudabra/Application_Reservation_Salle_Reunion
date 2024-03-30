@@ -17,6 +17,7 @@ import { ListMeetingComponent } from './dashboard/list-meeting/list-meeting.comp
 import { AddRommComponent } from './dashboard/add-romm/add-romm.component';
 import { UpdateRommComponent } from './dashboard/update-romm/update-romm.component';
 import { ListUsersComponent } from './dashboard/list-users/list-users.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,9 @@ import { ListUsersComponent } from './dashboard/list-users/list-users.component'
     AppRoutingModule,
     CommonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    
+
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
