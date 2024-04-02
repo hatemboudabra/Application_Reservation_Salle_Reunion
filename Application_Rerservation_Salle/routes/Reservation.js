@@ -19,7 +19,20 @@ const transporter = nodemailer.createTransport({
     pass: "tzct gurs efan lbru",
   },
 });
-
+router.get('/getreservationbyiduser/:userId', authenticate, (req, res) => {
+  const userId = req.params.userId;
+  Reservation.find({ user: userId }).populate(['user','meetingRoom'])
+    .then(reservations => {
+      if (!reservations || reservations.length === 0) {
+        return res.status(404).json({ message: 'Reservations not found for this user' });
+      }
+      res.json(reservations);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    });
+});
 router.get('/all', authenticate,(req, res) => {
     Reservation.find().populate(['user','meetingRoom']).then(
     (data) => {

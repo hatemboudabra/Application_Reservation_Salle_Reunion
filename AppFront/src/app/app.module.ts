@@ -17,6 +17,11 @@ import { ListMeetingComponent } from './dashboard/list-meeting/list-meeting.comp
 import { AddRommComponent } from './dashboard/add-romm/add-romm.component';
 import { UpdateRommComponent } from './dashboard/update-romm/update-romm.component';
 import { ListUsersComponent } from './dashboard/list-users/list-users.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { ListMeetingusComponent } from './dashboard-user/list-meetingus/list-meetingus.component';
+import { AjouterReservationComponent } from './dashboard-user/ajouter-reservation/ajouter-reservation.component';
+import { ListReservationComponent } from './dashboard-user/list-reservation/list-reservation.component';
+
 
 @NgModule({
   declarations: [
@@ -32,16 +37,22 @@ import { ListUsersComponent } from './dashboard/list-users/list-users.component'
     ListMeetingComponent,
     AddRommComponent,
     UpdateRommComponent,
-    ListUsersComponent
+    ListUsersComponent,
+    ListMeetingusComponent,
+    AjouterReservationComponent,
+    ListReservationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
     HttpClientModule,
+
     FormsModule,
     
 
+
+    FullCalendarModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

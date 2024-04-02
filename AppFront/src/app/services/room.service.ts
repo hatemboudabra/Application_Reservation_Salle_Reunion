@@ -16,7 +16,7 @@ export class RoomService {
     return this.http.post(this.url+'ajouter',meetingRoom,{ headers: this.headers });
   }
   getall(){
-    return this.http.get(this.url+'all');
+    return this.http.get(this.url+'all',{ headers: this.headers });
   }
 
   modifier(id : any , meetingRoom : any){
