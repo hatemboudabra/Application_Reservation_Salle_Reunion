@@ -10,12 +10,21 @@ import { AuthGuard } from './guards/auth.guard';
 import { AddRommComponent } from './dashboard/add-romm/add-romm.component';
 import { UpdateRommComponent } from './dashboard/update-romm/update-romm.component';
 import { ListUsersComponent } from './dashboard/list-users/list-users.component';
+import { ListMeetingusComponent } from './dashboard-user/list-meetingus/list-meetingus.component';
+import { AjouterReservationComponent } from './dashboard-user/ajouter-reservation/ajouter-reservation.component';
+import { ListReservationComponent } from './dashboard-user/list-reservation/list-reservation.component';
 
 const routes: Routes = [
+  
   { path: 'login', component: LoginComponent },
   {path: '', redirectTo:'login', pathMatch: 'full'},
   { path: 'register', component: RegisterComponent },
-  { path: 'dashboardus', component: DashboardUserComponent},
+  { path: 'dashboardus', component: DashboardUserComponent, children:[
+    {path: 'listreservation', component: ListReservationComponent},
+    { path: 'ajouterreserv/:id', component:AjouterReservationComponent },
+    {path: 'listmeetingus', component: ListMeetingusComponent},
+   
+  ]},
   { path: 'dashboard',canActivate:[AuthGuard], component: DashboardComponent , children:[
     {path: '', redirectTo:'dashboard', pathMatch: 'full'},
     { path: 'listroom', component: ListMeetingComponent},
