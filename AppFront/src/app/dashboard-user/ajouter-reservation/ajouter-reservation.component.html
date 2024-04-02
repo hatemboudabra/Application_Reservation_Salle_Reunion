@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input type="date" [(ngModel)] = "Reservation.startTime" class="form-control" id="startDate" name="startDate">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="endDate">End Date:</label>
+        <input type="date" [(ngModel)] = "Reservation.endTime" class="form-control" id="endDate" name="endDate">
+      </div>
+    </div>
+  </div>
+  
+  <div class="row justify-content-end"> <!-- Use 'justify-content-end' class to move content to the right -->
+    <div class="col-md-6">
+      <div class="button header-button">
+        <a class="btn" (click)="Reserver()">Post Reservation</a>
+      </div>
+    </div>
+  </div>
+  

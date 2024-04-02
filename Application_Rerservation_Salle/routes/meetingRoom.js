@@ -78,6 +78,7 @@ router.post('/ajouter'  , upload.any('image'), authenticate,(req, res) => {
     }
   );
 });
+
 router.get('/getroombyiduser/:userId', authenticate, (req, res) => {
   const userId = req.params.userId;
   MeetingRoom.find({ user: userId })

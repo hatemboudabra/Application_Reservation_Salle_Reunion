@@ -1,0 +1,30 @@
+<div class="col-lg-8 col-md-12 col-8">
+    <!-- Start Single Item -->
+    <div class="single-item-grid" *ngFor="let room of meetingroom">
+      <div class="row align-items-center">
+        <div class="col-lg-5 col-md-7 col-12">
+          <div class="image">
+            <a href="item-details.html"><img [src]="url + 'getimage/' + room.image" alt="#"></a>
+            <i class="cross-badge lni lni-bolt"></i>
+            <span class="flat-badge sale">Sale</span>
+          </div>
+        </div>
+        <div class="col-lg-7 col-md-5 col-12">
+          <div class="content">
+            <a href="javascript:void(0)" class="tag">Meeting Room</a>
+            <h3 class="title">
+              <a href="item-details.html">{{ room.name }}</a>
+            </h3>
+            <div>
+              <ul class="price">Capacity: {{ room.capacity }}</ul>
+              <ul class="price">Price :{{ room.price }}</ul>
+            </div>
+            <br>
+            <!-- Add Book Now button here -->
+            <button class="btn btn-primary" [routerLink]="['/dashboardus/ajouterreserv/',room._id]">Reservez</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
