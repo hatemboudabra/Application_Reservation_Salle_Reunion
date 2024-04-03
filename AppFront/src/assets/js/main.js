@@ -10,7 +10,7 @@ Author: GrayGrids
 	//===== Prealoder
 
 	window.onload = function () {
-		window.setTimeout(fadeout, 200);
+		window.setTimeout(fadeout, 1);
 	}
 
 
