@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { RoomService } from 'src/app/services/room.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
@@ -10,7 +10,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
   styleUrls: ['./ajouter-reservation.component.css']
 })
 export class AjouterReservationComponent implements OnInit{
-  constructor(private route:ActivatedRoute,private  _reserv:ReservationService, private  _room:RoomService ,private storageService:TokenStorageService){}
+  constructor(private route:ActivatedRoute,private  _reserv:ReservationService, private  _room:RoomService ,private storageService:TokenStorageService , private router : Router){}
   Reservation={
     user:'',
     meetingRoom:'',
@@ -30,8 +30,8 @@ Reserver(){
   this._reserv.ajouter(this.Reservation).subscribe(
     ( res)=>{
        console.log(res);
+       this.router.navigate(['/dashboardus/listreservation'])
 
-     
      },
      err=>{
        console.log(err);

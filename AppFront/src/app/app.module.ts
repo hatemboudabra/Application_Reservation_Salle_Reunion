@@ -47,12 +47,9 @@ import { ListReservationComponent } from './dashboard-user/list-reservation/list
     AppRoutingModule,
     CommonModule,
     HttpClientModule,
-
     FormsModule,
-    
+    FullCalendarModule,
 
-
-    FullCalendarModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
