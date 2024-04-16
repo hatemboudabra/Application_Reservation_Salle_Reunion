@@ -28,38 +28,82 @@ export class AjouterReservationComponent implements OnInit{
     this.Reservation.user = user2._id;
   }
 
+  validateReservation(): boolean {
+    const start = new Date(this.Reservation.startTime);
+    const end = new Date(this.Reservation.endTime);
+  
+    if (start.getFullYear() > end.getFullYear()) {
+      return false;
+    } else if (start.getFullYear() === end.getFullYear() && start.getMonth() > end.getMonth()) {
+      return false;
+    } else if (start.getFullYear() === end.getFullYear() && start.getMonth() === end.getMonth() && start.getDate() >= end.getDate()) {
+      return false;
+    }
+  
+    return true;
+  }
+
   Reserver() {
-    console.log(this.Reservation);
+    if (this.validateReservation()) {
+      console.log(this.Reservation);
+      this.addReservation();
+    } else {
+      this.showInvalidReservationAlert();
+    }
+  }
+
+  addReservation() {
     this._reserv.ajouter(this.Reservation).subscribe(
       (res) => {
         console.log(res);
-        Swal.fire({
-          icon: 'success',
-          title: 'Reservation Successful',
-          text: 'Your reservation has been successfully .',
-          confirmButtonText: 'OK'
-        }).then(() => {
-          this.router.navigate(['/dashboardus/listreservation']);
-        });
+        this.showSuccessAlert();
       },
       (err) => {
         console.log(err);
         if (err.status === 400) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Reservation Error',
-            text: 'The meeting room is already booked for the selected time. Please choose a different time .',
-            confirmButtonText: 'OK'
-          });
+          this.showRoomBookedAlert();
         } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Reservation Error',
-            text: 'An error occurred while making the reservation. Please try again.',
-            confirmButtonText: 'OK'
-          });
+          this.showReservationErrorAlert();
         }
       }
     );
+  }
+
+  showSuccessAlert() {
+    Swal.fire({
+      icon: 'success',
+      title: 'Reservation Successful',
+      text: 'Your reservation has been successfully .',
+      confirmButtonText: 'OK'
+    }).then(() => {
+      this.router.navigate(['/dashboardus/listreservation']);
+    });
+  }
+
+  showRoomBookedAlert() {
+    Swal.fire({
+      icon: 'error',
+      title: 'Reservation Error',
+      text: 'The meeting room is already booked for the selected time. Please choose a different time .',
+      confirmButtonText: 'OK'
+    });
+  }
+
+  showReservationErrorAlert() {
+    Swal.fire({
+      icon: 'error',
+      title: 'Reservation Error',
+      text: 'An error occurred while making the reservation. Please try again.',
+      confirmButtonText: 'OK'
+    });
+  }
+
+  showInvalidReservationAlert() {
+    Swal.fire({
+      icon: 'error',
+      title: 'Invalid Reservation',
+      text: 'End time must be after start time. Please choose a valid time range.',
+      confirmButtonText: 'OK'
+    });
   }
 }

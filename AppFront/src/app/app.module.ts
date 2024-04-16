@@ -21,6 +21,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { ListMeetingusComponent } from './dashboard-user/list-meetingus/list-meetingus.component';
 import { AjouterReservationComponent } from './dashboard-user/ajouter-reservation/ajouter-reservation.component';
 import { ListReservationComponent } from './dashboard-user/list-reservation/list-reservation.component';
+import { ChatbotComponent } from './dashboard-user/chatbot/chatbot.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ListReservationComponent } from './dashboard-user/list-reservation/list
     ListUsersComponent,
     ListMeetingusComponent,
     AjouterReservationComponent,
-    ListReservationComponent
+    ListReservationComponent,
+    ChatbotComponent
   ],
   imports: [
     BrowserModule,

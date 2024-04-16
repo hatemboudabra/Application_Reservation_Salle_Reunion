@@ -28,13 +28,9 @@ export class ListReservationComponent implements OnInit {
           } else {
             this.color = 'color';
           }
-          const startDateTime = new Date(l.startTime);
-          const endDateTime = new Date(l.endTime);
-          const formattedStartTime = startDateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-          const formattedEndTime = endDateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
-          
+
+        
           this.Events.push({
-            title: `${l.meetingRoom.name} (${formattedStartTime} - ${formattedEndTime})`,
             start: l.startTime,
             end: l.endTime,
             backgroundColor: this.color
