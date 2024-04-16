@@ -73,6 +73,12 @@ router.delete('/:id',authenticate, (req, res) => {
 router.post('/ajouter', authenticate, async (req, res) => {
   try {
     const reservfromb = req.body;
+
+    // Validation de la date de début inférieure à la date de fin
+    if (new Date(reservfromb.startTime) >= new Date(reservfromb.endTime)) {
+      return res.status(400).json({ message: 'Start time must be before end time.' });
+    }
+
     const reservationExists = await Reservation.exists({
       meetingRoom: reservfromb.meetingRoom,
       $or: [
@@ -98,6 +104,7 @@ router.post('/ajouter', authenticate, async (req, res) => {
     res.status(500).send({ message: 'Internal Server Error' });
   }
 });
+
 
 async function sendEmailNotification(reservation) {
    // const user = await User.findById(reservation.user);
