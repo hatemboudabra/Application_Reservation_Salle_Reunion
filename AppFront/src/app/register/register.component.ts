@@ -26,7 +26,6 @@ register(){
       this.router.navigate(['/login'])
       console.log('User registered successfully:', response);
    
-      // Handle success response here
     },
     (error) => {
       console.error('Error registering user:', error);

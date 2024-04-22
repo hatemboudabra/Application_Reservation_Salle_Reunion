@@ -17,10 +17,11 @@ import { ListMeetingComponent } from './dashboard/list-meeting/list-meeting.comp
 import { AddRommComponent } from './dashboard/add-romm/add-romm.component';
 import { UpdateRommComponent } from './dashboard/update-romm/update-romm.component';
 import { ListUsersComponent } from './dashboard/list-users/list-users.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 import { ListMeetingusComponent } from './dashboard-user/list-meetingus/list-meetingus.component';
 import { AjouterReservationComponent } from './dashboard-user/ajouter-reservation/ajouter-reservation.component';
 import { ListReservationComponent } from './dashboard-user/list-reservation/list-reservation.component';
-import { FullCalendarModule } from '@fullcalendar/angular';
+import { ChatbotComponent } from './dashboard-user/chatbot/chatbot.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     ListUsersComponent,
     ListMeetingusComponent,
     AjouterReservationComponent,
-    ListReservationComponent
+    ListReservationComponent,
+    ChatbotComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,9 @@ const meetingRoomSchema = new mongoose.Schema({
   name: { type: String, required: true },
   capacity: { type: Number, required: true },
   image: { type: String },
-  price: { type: Number}
+  price: { type: Number},
+  description: { type: String }
+
 });
 
 module.exports = mongoose.model('MeetingRoom', meetingRoomSchema);

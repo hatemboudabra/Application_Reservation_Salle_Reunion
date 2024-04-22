@@ -1,7 +1,7 @@
 <full-calendar [options]="calendarOptions">
     <ng-template #eventContent let-arg>
-      <b>{{arg.timeText}}</b>
-      <i>{{arg.event.title}}</i>
+      <i>{{arg.event.start| date:'HH:mm'}} TO {{arg.event.end| date:'HH:mm'}}</i>
+      AT <b>{{arg.event.title}}</b>
     </ng-template>
   </full-calendar>
   

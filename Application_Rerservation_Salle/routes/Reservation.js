@@ -70,22 +70,41 @@ router.delete('/:id',authenticate, (req, res) => {
   );
 });
 
-router.post('/ajouter', authenticate, (req, res) => {
-  let reservfromb = req.body;
+router.post('/ajouter', authenticate, async (req, res) => {
+  try {
+    const reservfromb = req.body;
 
-  let reserv = new Reservation(reservfromb);
-
-  reserv.save().then(
-    (data) => {
-      sendEmailNotification(data);
-      res.send(data);
-    },
-    (error) => {
-      console.log(error);
-      res.send(error);
+    // Validation de la date de début inférieure à la date de fin
+    if (new Date(reservfromb.startTime) >= new Date(reservfromb.endTime)) {
+      return res.status(400).json({ message: 'Start time must be before end time.' });
     }
-  );
+
+    const reservationExists = await Reservation.exists({
+      meetingRoom: reservfromb.meetingRoom,
+      $or: [
+        {
+          startTime: { $gte: reservfromb.startTime, $lt: reservfromb.endTime }
+        },
+        {
+          endTime: { $gt: reservfromb.startTime, $lte: reservfromb.endTime }
+        }
+      ]
+    });
+
+    if (reservationExists) {
+      return res.status(400).json({ message: 'The meeting room is already booked for the selected time .' });
+    }
+
+    const reserv = new Reservation(reservfromb);
+    const data = await reserv.save();
+    await sendEmailNotification(data);
+    res.send(data);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: 'Internal Server Error' });
+  }
 });
+
 
 async function sendEmailNotification(reservation) {
    // const user = await User.findById(reservation.user);

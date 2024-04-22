@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { RoomService } from 'src/app/services/room.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+//import Swal from 'sweetalert2';
 
 
 
@@ -62,6 +63,7 @@ image:any
         f.append('image',this.Room.image);
 
       }
+      
       this._list.modifier(this.id,f).subscribe(
         ( res)=>{
            console.log(res);

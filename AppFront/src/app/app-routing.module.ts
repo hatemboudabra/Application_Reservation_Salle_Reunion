@@ -26,7 +26,7 @@ const routes: Routes = [
    
   ]},
   { path: 'dashboard',canActivate:[AuthGuard], component: DashboardComponent , children:[
-    {path: '', redirectTo:'dashboard', pathMatch: 'full'},
+    {path: '', redirectTo:'dashboard/listusers', pathMatch: 'full'},
     { path: 'listroom', component: ListMeetingComponent},
     { path: 'add-room', component:AddRommComponent },
     { path: 'updateroom/:id', component:UpdateRommComponent },

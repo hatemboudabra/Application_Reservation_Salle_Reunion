@@ -43,10 +43,10 @@ ngOnInit(): void {
           console.log(this.role);
         
           if(this.role == 'User'){
-              this.router.navigate(['/dashboardus'])
+              this.router.navigate(['/dashboardus/listmeetingus'])
           }
           else{
-            this.router.navigate(['/dashboard'])
+            this.router.navigate(['/dashboard/listusers'])
           }
         },
         (error)=>{

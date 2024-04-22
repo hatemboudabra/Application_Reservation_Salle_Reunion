@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { RoomService } from 'src/app/services/room.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-romm',
@@ -49,6 +50,12 @@ ajouter(){
     this._list.ajouter(f).subscribe(
       (data) => {
         console.log(data)
+     //   Swal.fire('success!', '', 'success')
+     Swal.fire({
+      title: "Add Room!",
+      text: "success",
+      icon: "success"
+    });
         this.router.navigate(['/dashboard/listroom'])
       },
       error => {
