@@ -1,25 +1,20 @@
-
-# Base image
+# Use the official Node.js image.
 FROM node:20.5
 
-# Set the working directory inside the container
-WORKDIR /nodejs-app
+# Create and change to the app directory.
+WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
+# Copy application dependency manifests to the container image.
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install --legacy-peer-deps
+# Install production dependencies.
+RUN npm install --production
 
-# Install webpack globally
-RUN npm install -g webpack
-
-# Copy the source code to the working directory
+# Copy local code to the container image.
 COPY . .
 
+# Run the web service on container startup.
+CMD [ "node", "server.js" ]
 
-# Expose any necessary ports (if applicable)
- EXPOSE 4321
-
-# Default command to run the application (if applicable)
-CMD [ "npm","start" ]
+# Expose the port the app runs on.
+EXPOSE 4321
