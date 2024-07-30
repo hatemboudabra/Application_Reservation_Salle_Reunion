@@ -16,7 +16,7 @@ services:
       - mongodb
 
   mongodb:
-    image: mongo:4.4.6   # Utiliser une version compatible avec votre système
+    image: mongo:4.4.6   
     ports:
       - "27017:27017"
     networks:
