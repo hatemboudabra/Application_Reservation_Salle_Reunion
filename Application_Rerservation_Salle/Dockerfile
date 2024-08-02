@@ -1,20 +1,20 @@
 
-FROM node:20.5
+#FROM node:20.5
 
 
-WORKDIR /usr/src/app
+#WORKDIR /usr/src/app
 
 
-COPY package*.json ./
+#COPY package*.json ./
 
 
-RUN npm install --production
+#RUN npm install --production
 
 # Copy local code to the container image.
-COPY . .
+#COPY . .
 
 # Run the web service on container startup.
-CMD [ "node", "server.js" ]
+#CMD [ "node", "server.js" ]
 
 # Expose the port the app runs on.
-EXPOSE 4321
+#EXPOSE 4321

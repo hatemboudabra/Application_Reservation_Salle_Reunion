@@ -1,0 +1,31 @@
+<div class="meeting-room-home">
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">
+        <img src="assets/logo.JPG" alt="Logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li routerLink="/login">Login</li>
+        <li routerLink="/register">Register</li>
+      </ul>
+    </nav>
+  
+    <!-- Title Section -->
+    <section class="title-section">
+      <h1>CREATIVE IDEAS FOR MEETING ROOMS IN THE WORKPLACE</h1>
+    </section>
+  
+    <!-- Main Image Section -->
+    <section class="image-section">
+      <img [src]="mainImage.src" [alt]="mainImage.alt" class="main-image">
+    </section>
+  
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+      <div class="gallery">
+        <img *ngFor="let img of images" [src]="img.src" [alt]="img.alt" (click)="onImageClick(img)">
+      </div>
+    </section>
+  </div>
+  

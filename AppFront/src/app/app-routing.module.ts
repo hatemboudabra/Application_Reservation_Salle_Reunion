@@ -13,11 +13,14 @@ import { ListUsersComponent } from './dashboard/list-users/list-users.component'
 import { ListMeetingusComponent } from './dashboard-user/list-meetingus/list-meetingus.component';
 import { AjouterReservationComponent } from './dashboard-user/ajouter-reservation/ajouter-reservation.component';
 import { ListReservationComponent } from './dashboard-user/list-reservation/list-reservation.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   
-  { path: 'login', component: LoginComponent },
-  {path: '', redirectTo:'login', pathMatch: 'full'},
+  {path:'home',component: HomeComponent},
+  {path: '', redirectTo:'home', pathMatch: 'full'},
+ // {path: '', redirectTo:'login', pathMatch: 'full'},
+ { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboardus', component: DashboardUserComponent, children:[
     {path: 'listreservation', component: ListReservationComponent},

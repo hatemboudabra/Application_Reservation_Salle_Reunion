@@ -22,6 +22,7 @@ import { ListMeetingusComponent } from './dashboard-user/list-meetingus/list-mee
 import { AjouterReservationComponent } from './dashboard-user/ajouter-reservation/ajouter-reservation.component';
 import { ListReservationComponent } from './dashboard-user/list-reservation/list-reservation.component';
 import { ChatbotComponent } from './dashboard-user/chatbot/chatbot.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ChatbotComponent } from './dashboard-user/chatbot/chatbot.component';
     ListMeetingusComponent,
     AjouterReservationComponent,
     ListReservationComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

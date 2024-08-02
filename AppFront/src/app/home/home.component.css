@@ -1,0 +1,60 @@
+.meeting-room-home {
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links li {
+    display: inline;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1em;
+  }
+  
+  .title-section h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  .image-section img {
+    width: 80%;
+    height: auto;
+    margin-top: 20px;
+  }
+  
+  .gallery-section .gallery {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .gallery-section .gallery img {
+    width: 200px;
+    height: auto;
+    cursor: pointer;
+  }
+  
+  .main-image {
+    width: 80%;
+    height: auto;
+    margin-top: 20px;
+  }
+  
