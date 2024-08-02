@@ -1,20 +1,20 @@
+# Use node:lts-alpine as base image
+FROM node:lts-alpine
 
-#FROM node:20.5
+# Set the working directory
+WORKDIR /app
 
+# Copy package.json and package-lock.json
+COPY package.json package-lock.json ./
 
-#WORKDIR /usr/src/app
+# Install dependencies
+RUN npm ci --production
 
+# Copy the application source code
+COPY . .
 
-#COPY package*.json ./
+# Expose the port
+EXPOSE 5000
 
-
-#RUN npm install --production
-
-# Copy local code to the container image.
-#COPY . .
-
-# Run the web service on container startup.
-#CMD [ "node", "server.js" ]
-
-# Expose the port the app runs on.
-#EXPOSE 4321
+# Start the application
+CMD ["node", "server.js"]
