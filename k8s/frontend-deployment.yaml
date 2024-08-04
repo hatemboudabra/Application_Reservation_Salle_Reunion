@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: frontend-image
+          image: hatemboudabra/application_reservation_salle_reunion-frontend
           ports:
             - containerPort: 80
 ---
