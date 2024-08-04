@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: hatemboudabra/application_reservation_salle_reunion-frontend
+          image: hatemboudabra/application_reservation_salle_reunion-frontend:latest
           ports:
             - containerPort: 80
 ---
@@ -23,9 +23,11 @@ kind: Service
 metadata:
   name: frontend-service
 spec:
+  type: NodePort  
   selector:
     app: frontend
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
+      nodePort: 30001  # Specify a port in the range 30000-32767
