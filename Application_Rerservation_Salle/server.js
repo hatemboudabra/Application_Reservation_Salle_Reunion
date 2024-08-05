@@ -16,7 +16,7 @@ app.use(express.json());
 
 // Allow all origins for development or specify your frontend URL
 app.use(cors({
-  origin: 'http://localhost', 
+  origin: 'http://localhost/', 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));

@@ -8,27 +8,27 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   constructor(private http: HttpClient) { }
-  private  url = 'http://localhost:5000/auth/';
-  register(user:any){
-    return this.http.post(this.url+'register',user,{ responseType: 'text' });
+  private apiUrl = 'http://localhost:5000/auth';
+    register(user:any){
+    return this.http.post(this.apiUrl+'register',user,{ responseType: 'text' });
   }
   login(user:any){
-    return this.http.post(this.url+'login',user);
+    return this.http.post(this.apiUrl+'login',user);
   }
   getrole(id : any){
-    return this.http.get(this.url+id)
+    return this.http.get(this.apiUrl+id)
   }
   logout() :void{
     localStorage.removeItem('token');
   }
   getall(){
-    return this.http.get(this.url+'all');
+    return this.http.get(this.apiUrl+'all');
   }
   supprimer(id:any){
-    return this.http.delete(this.url+id);
+    return this.http.delete(this.apiUrl+id);
   }
   userbyid(id:any){
-    return this.http.get(this.url+'userbyid/'+id)
+    return this.http.get(this.apiUrl+'userbyid/'+id)
   }
 
 }

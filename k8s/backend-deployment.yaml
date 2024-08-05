@@ -20,7 +20,6 @@ spec:
           env:
             - name: MONGODB_URI
               value: mongodb://mongo-service:27017/ReservationSalle
-
 ---
 apiVersion: v1
 kind: Service
