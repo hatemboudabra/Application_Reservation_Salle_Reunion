@@ -14,12 +14,13 @@ spec:
     spec:
       containers:
         - name: backend
-          image: hatemboudabra/application_reservation_salle_reunion-backend
+          image: hatemboudabra/application_reservation_salle_reunion-backend:latest
           ports:
             - containerPort: 5000
           env:
             - name: MONGODB_URI
               value: mongodb://mongo-service:27017/ReservationSalle
+
 ---
 apiVersion: v1
 kind: Service
@@ -32,3 +33,5 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000
+      nodePort: 30002
+  type: NodePort
