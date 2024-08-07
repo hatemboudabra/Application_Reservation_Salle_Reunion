@@ -9,3 +9,7 @@ if (environment.production) {
 }
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+function enableProdMode() {
+  throw new Error('Function not implemented.');
+}
+

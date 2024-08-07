@@ -1,20 +1,24 @@
-# Use node:lts-alpine as base image
-FROM node:lts-alpine
-
-# Set the working directory
-WORKDIR /app
-
-# Copy package.json and package-lock.json
-COPY package.json package-lock.json ./
+# Builder container to install dependencies
+FROM node:lts-alpine AS build
+WORKDIR /usr/src/app
 
 # Install dependencies
-RUN npm ci --production
+COPY package.json .
+COPY package-lock.json .
+RUN npm ci
 
-# Copy the application source code
+# Copy the application source
 COPY . .
 
-# Expose the port
-EXPOSE 5000
+FROM node:lts-alpine
+WORKDIR /app
+COPY package.json .
+COPY package-lock.json .
+COPY .env.production .env
 
-# Start the application
-CMD ["node", "server.js"]
+RUN npm ci --omit=dev
+
+COPY --from=build /usr/src/app /app
+
+EXPOSE 5000
+CMD [ "node", "server.js" ]
